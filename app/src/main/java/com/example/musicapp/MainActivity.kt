@@ -1,5 +1,6 @@
 package com.example.musicapp
 
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,32 +18,39 @@ class MainActivity : AppCompatActivity() {
 
 
         val service = Retrofit.Builder()
-            .baseUrl("https://randomuser.me/")
+            .baseUrl("http://ws.audioscrobbler.com/2.0/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UserService::class.java)
 
 
-        service.getTopTracks().enqueue(object : Callback<ApiResponse> {
+        service.getArtistInfo().enqueue(object : Callback<ArtistBioResponse> {
 
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ArtistBioResponse>, t: Throwable) {
                 Log.d("TAG_", "An error happened!")
                 t.printStackTrace()
             }
 
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+            override fun onResponse(call: Call<ArtistBioResponse>, response: Response<ArtistBioResponse>) {
                 Log.d("TAG_", response.body().toString())
             }
         })
     }
 }
 
-data class ApiResponse(val results: List<Artist>)
-data class Artist(val name: String, val track: String)
+class ArtistBioResponse(val results: ArtistDataResponse)
+
+class ArtistDataResponse(val artist: List<ArtistInfoResponse>)
+
+class ArtistInfoResponse(val data: ArtistInfoDataResponse)
+
+class ArtistInfoDataResponse(val name: String, image: Image, val listeners: String, val playcount: String)
+
+
 
 interface UserService {
-    @GET("/artist")
-    fun getTopTracks(): Call<ApiResponse>
+    @GET("/artist.json")
+    fun getArtistInfo(): Call<ArtistBioResponse>
 }
 
 

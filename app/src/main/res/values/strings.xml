@@ -2,5 +2,6 @@
     <string name="app_name">MusicApp</string>
     <string name="hint_name">Введите артиста</string>
     <string name="get3tracks">Поиск</string>
+    <string name="artist_info">Информация об артисте</string>
 
 </resources>
