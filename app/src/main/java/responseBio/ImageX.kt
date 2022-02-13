@@ -1,6 +1,10 @@
 package responseBio
 
+import com.google.gson.annotations.SerializedName
+
 data class ImageX(
-    val #text: String,
+    @SerializedName("#text")
+    val text : String,
+    @SerializedName("size")
     val size: String
 )

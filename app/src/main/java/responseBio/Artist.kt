@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName
 
 data class Artist(
     @SerializedName("bio")
-    val bio: Bio,
+    val bio: String = "",
     @SerializedName("image")
-    val image: List<Image>,
+    val image: List<Image> = listOf(),
     @SerializedName("mbid")
-    val mbid: String,
+    val mbid: String = "",
     @SerializedName("name")
-    val name: String,
+    val name: String = "",
     @SerializedName("ontour")
-    val ontour: String,
+    val ontour: String = "",
     @SerializedName("similar")
-    val similar: Similar,
+    val similar: String = "",
     @SerializedName("stats")
-    val stats: Stats,
+    val stats: String = "",
     @SerializedName("streamable")
-    val streamable: String,
+    val streamable: String = "",
     @SerializedName("tags")
-    val tags: Tags,
+    val tags: String = "",
     @SerializedName("url")
-    val url: String
+    val url: String = ""
 )
