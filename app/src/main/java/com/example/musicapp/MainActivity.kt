@@ -9,12 +9,16 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import response.TopTracksResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -30,22 +34,29 @@ class MainActivity : AppCompatActivity() {
 
 
         val service = Retrofit.Builder()
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                    .build()
+            )
             .baseUrl("http://ws.audioscrobbler.com/2.0/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UserService::class.java)
 
 
-        service.getArtistInfo().enqueue(object : Callback<ArtistBioResponse> {
+        service.getArtistInfo("Eminem").enqueue(object : Callback<TopTracksResponse> {
 
-            override fun onFailure(call: Call<ArtistBioResponse>, t: Throwable) {
+            override fun onFailure(call: Call<TopTracksResponse>, t: Throwable) {
                 Log.d("TAG_", "An error happened!")
                 t.printStackTrace()
             }
 
             override fun onResponse(
-                call: Call<ArtistBioResponse>,
-                response: Response<ArtistBioResponse>
+                call: Call<TopTracksResponse>,
+                response: Response<TopTracksResponse>
             ) {
                 Log.d("TAG_", response.body().toString())
             }
@@ -60,23 +71,15 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-class ArtistBioResponse(val results: ArtistDataResponse)
 
-class ArtistDataResponse(val artist: List<ArtistInfoResponse>)
-
-class ArtistInfoResponse(val data: ArtistInfoDataResponse)
-
-class ArtistInfoDataResponse(
-    val name: String,
-    image: Image,
-    val listeners: String,
-    val playcount: String
-)
 
 
 interface UserService {
-    @GET("/artist.json")
-    fun getArtistInfo(): Call<ArtistBioResponse>
+    @GET("?method=artist.gettoptracks&api_key=c11016bf99eacfa8159ac5c66993770e&format=json")
+    fun getArtistInfo(
+        @Query("artist") artist: String,
+        @Query("limit") limit: Int = 5,
+    ): Call<TopTracksResponse>
 }
 
 
