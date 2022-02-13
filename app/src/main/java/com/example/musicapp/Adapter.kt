@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import responseTrack.TopTracksResponse
 
 interface OnInteractionListener {
+    fun onSearchBtnPressed(post: TopTracksResponse){}
+
 
 }
 
