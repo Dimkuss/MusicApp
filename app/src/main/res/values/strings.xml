@@ -3,5 +3,6 @@
     <string name="hint_name">Введите артиста</string>
     <string name="get3tracks">Поиск</string>
     <string name="artist_info">Лучшие треки артиста</string>
+    <string name="artist_bio">Биография артиста</string>
 
 </resources>
