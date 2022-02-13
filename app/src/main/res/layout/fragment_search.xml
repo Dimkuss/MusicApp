@@ -7,7 +7,7 @@
     tools:context=".SearchFragment"
     >
     <Button
-        android:id="@+id/button"
+        android:id="@+id/searchTracksBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/button"
+        app:layout_constraintTop_toBottomOf="@id/searchTracksBtn"
         tools:listitem="@layout/search_item"
         >
 
