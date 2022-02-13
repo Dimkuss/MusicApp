@@ -11,7 +11,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import response.TopTracksResponse
+import responseBio.AuthorBioResponse
+import responseTrack.TopTracksResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,7 +48,21 @@ class MainActivity : AppCompatActivity() {
             .create(UserService::class.java)
 
 
-        service.getArtistInfo("Eminem").enqueue(object : Callback<TopTracksResponse> {
+        service.getArtistTracks("Eminem").enqueue(object : Callback<TopTracksResponse> {
+
+            override fun onFailure(call: Call<TopTracksResponse>, t: Throwable) {
+                Log.d("TAG_", "An error happened!")
+                t.printStackTrace()
+            }
+
+            override fun onResponse(
+                call: Call<TopTracksResponse>,
+                response: Response<TopTracksResponse>
+            ) {
+                Log.d("TAG_", response.body().toString())
+            }
+        })
+        service.getArtistBio("Eminem").enqueue(object : Callback<AuthorBioResponse> {
 
             override fun onFailure(call: Call<TopTracksResponse>, t: Throwable) {
                 Log.d("TAG_", "An error happened!")
@@ -71,15 +86,19 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-
-
-
 interface UserService {
     @GET("?method=artist.gettoptracks&api_key=c11016bf99eacfa8159ac5c66993770e&format=json")
-    fun getArtistInfo(
+    fun getArtistTracks(
         @Query("artist") artist: String,
         @Query("limit") limit: Int = 5,
     ): Call<TopTracksResponse>
+
+    @GET("?method=artist.getinfo&api_key=c11016bf99eacfa8159ac5c66993770e&format=json")
+    fun getArtistBio(
+        @Query("artist") artist: String,
+        @Query("limit") limit: Int = 5,
+    ): Call<AuthorBioResponse>
+
 }
 
 

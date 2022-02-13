@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/searchTracksBtn"
-        tools:listitem="@layout/search_item"
+        tools:listitem="@layout/search_item_track"
         >
 
     </androidx.recyclerview.widget.RecyclerView>
