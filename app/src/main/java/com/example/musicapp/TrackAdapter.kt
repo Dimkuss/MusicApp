@@ -18,9 +18,9 @@ interface OnInteractionListener {
 
 }
 
-class Adapter(
+class TrackAdapter( private val onInteractionListener: OnInteractionListener
 
-) : ListAdapter<TopTracksResponse, TrackViewHolder>(PostDiffCallback()) {
+) : RecyclerView.Adapter<TrackViewHolder>  {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
@@ -37,7 +37,7 @@ class Adapter(
 }
 
 class TrackViewHolder(
-    private val binding: SearchItemBio,
+    private val binding: SearchItemBioBinding,
     private val onInteractionListener: OnInteractionListener,
 ) : RecyclerView.ViewHolder(binding.root) {
 
