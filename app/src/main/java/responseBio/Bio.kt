@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Bio(
     @SerializedName("content")
-    val content: String,
+    val content: String = "",
     @SerializedName("links")
-    val links: Links,
+    val links: String = "",
     @SerializedName("published")
-    val published: String,
+    val published: String = "",
     @SerializedName("summary")
-    val summary: String
+    val summary: String = ""
 )

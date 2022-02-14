@@ -1,25 +1,13 @@
 package com.example.musicapp
 
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import responseBio.AuthorBioResponse
-import responseTrack.TopTracksResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Query
+import com.example.musicapp.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -32,50 +20,6 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-
-        val service = Retrofit.Builder()
-            .client(
-                OkHttpClient.Builder()
-                    .addInterceptor(HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BODY
-                    })
-                    .build()
-            )
-            .baseUrl("http://ws.audioscrobbler.com/2.0/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(UserService::class.java)
-
-
-        service.getArtistTracks("Eminem").enqueue(object : Callback<TopTracksResponse> {
-
-            override fun onFailure(call: Call<TopTracksResponse>, t: Throwable) {
-                Log.d("TAG_", "An error happened!")
-                t.printStackTrace()
-            }
-
-            override fun onResponse(
-                call: Call<TopTracksResponse>,
-                response: Response<TopTracksResponse>
-            ) {
-                Log.d("TAG_", response.body().toString())
-            }
-        })
-        service.getArtistBio("Eminem").enqueue(object : Callback<AuthorBioResponse> {
-
-            override fun onFailure(call: Call<TopTracksResponse>, t: Throwable) {
-                Log.d("TAG_", "An error happened!")
-                t.printStackTrace()
-            }
-
-            override fun onResponse(
-                call: Call<TopTracksResponse>,
-                response: Response<TopTracksResponse>
-            ) {
-                Log.d("TAG_", response.body().toString())
-            }
-        })
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -84,24 +28,3 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 }
-
-
-interface UserService {
-    @GET("?method=artist.gettoptracks&api_key=c11016bf99eacfa8159ac5c66993770e&format=json")
-    fun getArtistTracks(
-        @Query("artist") artist: String,
-        @Query("limit") limit: Int = 5,
-    ): Call<TopTracksResponse>
-
-    @GET("?method=artist.getinfo&api_key=c11016bf99eacfa8159ac5c66993770e&format=json")
-    fun getArtistBio(
-        @Query("artist") artist: String,
-        @Query("limit") limit: Int = 5,
-    ): Call<AuthorBioResponse>
-
-}
-
-
-
-
-

@@ -39,9 +39,9 @@
         android:textColor="#040404"
         android:textSize="15sp"
         tools:ignore="SmallSp"
-        tools:text="Author 123" />
+        tools:text="@string/listeners" />
     <TextView
-        android:id="@+id/listeners"
+        android:id="@+id/listenersTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/listeners_text"
@@ -49,23 +49,23 @@
         android:textColor="#040404"
         android:textSize="15sp"
         tools:ignore="SmallSp"
-        tools:text="Author 123" />
+        tools:text="Author123" />
     <TextView
-        android:id="@+id/play_count_text"
+        android:id="@+id/biography_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listeners"
-        android:layout_alignStart="@+id/listeners"
+        android:layout_below="@+id/listenersTextView"
+        android:layout_alignStart="@+id/listenersTextView"
         android:textColor="#040404"
         android:textSize="15sp"
         tools:ignore="SmallSp"
-        tools:text="Author 123" />
+        tools:text="@string/biography" />
     <TextView
-        android:id="@+id/play_count"
+        android:id="@+id/biographyTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/play_count_text"
-        android:layout_alignStart="@+id/play_count_text"
+        android:layout_below="@+id/biography_text"
+        android:layout_alignStart="@+id/biography_text"
         android:textColor="#040404"
         android:textSize="15sp"
         tools:ignore="SmallSp"

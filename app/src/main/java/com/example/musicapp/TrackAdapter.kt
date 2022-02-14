@@ -1,30 +1,23 @@
-package com.example.musicapp
-
-
-
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import responseTrack.TopTracksResponse
+import coil.load
+import com.example.musicapp.databinding.SearchItemTrackBinding
+import responseTrack.Track
 
 interface OnInteractionListener {
-    fun onSearchBtnPressed(post: TopTracksResponse){}
-
-
+    fun onTrackPressed(track: Track) {}
 }
 
-class TrackAdapter( private val onInteractionListener: OnInteractionListener
-
-) : RecyclerView.Adapter<TrackViewHolder>  {
-
+class TrackAdapter(
+    private val onInteractionListener: OnInteractionListener
+) : ListAdapter<Track, TrackViewHolder>(TrackItemDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
-        val binding = SearchItemTrack.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            SearchItemTrackBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return TrackViewHolder(binding, onInteractionListener)
     }
@@ -33,70 +26,30 @@ class TrackAdapter( private val onInteractionListener: OnInteractionListener
         val post = getItem(position)
         holder.bind(post)
     }
+}
 
+object TrackItemDiffCallback : DiffUtil.ItemCallback<Track>() {
+    override fun areItemsTheSame(oldItem: Track, newItem: Track): Boolean =
+        oldItem.mbid == newItem.mbid
+
+    override fun areContentsTheSame(oldItem: Track, newItem: Track): Boolean =
+        oldItem == newItem
 }
 
 class TrackViewHolder(
-    private val binding: SearchItemBioBinding,
+    private val binding: SearchItemTrackBinding,
     private val onInteractionListener: OnInteractionListener,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(post: TopTracksResponse) {
+    fun bind(track: Track) {
         binding.apply {
-            author.text = post.author
-            published.text = post.published
-            content.text = post.content
-            likes.isChecked = post.likedByMe
-            likes.text = CounterFormatter.formatCounter(post.likeCount)
-            shares.text = CounterFormatter.formatCounter(post.sharesCount)
+            songName.text = track.name
+            songAuthor.text = track.artist.name
+            imgAlbum.load(track.image.firstOrNull()?.text)
 
             root.setOnClickListener {
-                onInteractionListener.onDetailsClicked(post)
-            }
-            likes.setOnClickListener {
-                onInteractionListener.onLike(post)
-            }
-
-            shares.setOnClickListener {
-                onInteractionListener.onShare(post)
-            }
-
-            popupMenu.setOnClickListener {
-                PopupMenu(it.context, it).apply {
-                    inflate(R.menu.options_post)
-                    setOnMenuItemClickListener { item ->
-                        when (item.itemId) {
-                            R.id.menuActionRemove -> {
-                                onInteractionListener.onRemove(post)
-                                true
-                            }
-                            R.id.menuActionEdit -> {
-                                onInteractionListener.onEdit(post)
-                                true
-                            }
-                            else -> false
-                        }
-                    }
-                }.show()
+                onInteractionListener.onTrackPressed(track)
             }
         }
-
     }
-
-
 }
-
-class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
-    override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
-        return oldItem == newItem
-    }
-
-    override fun getChangePayload(oldItem: Post, newItem: Post): Any = Unit
-
-}
-
-acksResponse, PostViewHolder>(PostDiffCallback()) {

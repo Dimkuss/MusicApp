@@ -15,6 +15,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildFeatures{
+        viewBinding true
+    }
 
     buildTypes {
         release {
@@ -36,6 +39,8 @@ dependencies {
     def recyclerview_version = "1.2.1"
     def lifecycle_version = "2.4.0-alpha03"
     def retrofit_version = "2.9.0"
+    def coil_version = "1.3.2"
+    implementation "io.coil-kt:coil:$coil_version"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"

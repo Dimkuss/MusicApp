@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Artist(
     @SerializedName("bio")
-    val bio: String = "",
+    val bio: Bio = Bio (),
     @SerializedName("image")
     val image: List<Image> = listOf(),
     @SerializedName("mbid")
@@ -16,7 +16,7 @@ data class Artist(
     @SerializedName("similar")
     val similar: String = "",
     @SerializedName("stats")
-    val stats: String = "",
+    val stats: Stats = Stats(),
     @SerializedName("streamable")
     val streamable: String = "",
     @SerializedName("tags")
