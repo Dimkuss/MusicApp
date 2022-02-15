@@ -42,10 +42,11 @@ class BioFragment : Fragment() {
                         binding.progress.isVisible = true
                     }
                     is BioState.Idle -> {
-                        binding.errorGroup.isVisible = false
-                        binding.progress.isVisible = false
-                        binding.listenersText.isVisible = true
+
                         binding.apply {
+                            binding.errorGroup.isVisible = false
+                            binding.progress.isVisible = false
+                            listenersText.isVisible = it.artist != null
                             val artist = it.artist ?: return@apply
                             nameAuthor.text = artist.name
                             listenersTextView.text = artist.stats.listeners

@@ -116,7 +116,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/name_author"
             app:layout_constraintTop_toBottomOf="@id/name_author"
-            tools:text="@string/listeners"
+            android:text="@string/listeners"
             />
 
         <TextView
