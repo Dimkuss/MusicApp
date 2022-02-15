@@ -11,13 +11,14 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
 
-    private val _data = MutableStateFlow<SearchState>(SearchState.Loading)
+    private val _data = MutableStateFlow<SearchState>(SearchState.Idle())
     val data: StateFlow<SearchState> = _data.asStateFlow()
 
     fun searchTracks(query: String) {
         viewModelScope.launch {
+            _data.value = SearchState.Loading
             val result = try {
-                SearchState.Success(
+                SearchState.Idle(
                     MusicApi.service.getArtistTracks(query).toptracks.track
                 )
             } catch (e: IOException) {

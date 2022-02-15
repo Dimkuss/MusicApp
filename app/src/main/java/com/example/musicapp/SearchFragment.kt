@@ -1,8 +1,7 @@
 package com.example.musicapp
 
 
-import OnInteractionListener
-import TrackAdapter
+import com.example.musicapp.TrackAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import com.example.musicapp.databinding.FragmentSearchBinding
 import kotlinx.coroutines.flow.collectLatest
-import responseTrack.Track
 
 class SearchFragment : Fragment() {
 
@@ -25,18 +23,14 @@ class SearchFragment : Fragment() {
     ): View {
         val binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        val adapter = TrackAdapter(object : OnInteractionListener {
-            override fun onTrackPressed(track: Track) {
-                // TODO Переход к деталям?
-            }
-        })
+        val adapter = TrackAdapter()
 
         binding.recList.adapter = adapter
 
         val viewModel: SearchViewModel by viewModels()
 
         binding.searchBioBtn.setOnClickListener {
-           findNavController().navigate(R.id.action_searchFragment_to_bioFragment)
+            findNavController().navigate(R.id.action_searchFragment_to_bioFragment)
         }
 
         binding.retryButton.setOnClickListener {
@@ -51,12 +45,16 @@ class SearchFragment : Fragment() {
             viewModel.data.collectLatest {
                 when (it) {
                     is SearchState.Error -> {
-                        binding.errorGroup.visibility.
+                        binding.progress.isVisible = false
+                        binding.errorGroup.isVisible = true
                     }
                     SearchState.Loading -> {
-                       binding.progress.isVisible
+                        binding.errorGroup.isVisible = false
+                        binding.progress.isVisible = true
                     }
-                    is SearchState.Success -> {
+                    is SearchState.Idle -> {
+                        binding.errorGroup.isVisible = false
+                        binding.progress.isVisible = false
                         adapter.submitList(it.tracks)
                     }
                 }

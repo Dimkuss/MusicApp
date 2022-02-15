@@ -25,7 +25,6 @@ interface MusicService {
     @GET("?method=artist.getinfo$headers")
     suspend fun getArtistBio(
         @Query("artist") artist: String,
-        @Query("limit") limit: Int = 5,
     ): AuthorBioResponse
 
 }

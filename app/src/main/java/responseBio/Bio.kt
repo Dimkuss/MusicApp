@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class Bio(
     @SerializedName("content")
     val content: String = "",
-    @SerializedName("links")
-    val links: String = "",
     @SerializedName("published")
     val published: String = "",
     @SerializedName("summary")
