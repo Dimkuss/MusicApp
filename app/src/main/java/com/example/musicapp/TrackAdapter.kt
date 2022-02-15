@@ -10,7 +10,6 @@ import com.example.musicapp.databinding.SearchItemTrackBinding
 import responseTrack.Track
 
 
-
 class TrackAdapter(
 ) : ListAdapter<Track, TrackViewHolder>(TrackItemDiffCallback) {
 
@@ -38,7 +37,7 @@ object TrackItemDiffCallback : DiffUtil.ItemCallback<Track>() {
 class TrackViewHolder(
     private val binding: SearchItemTrackBinding,
 
-) : RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(track: Track) {
         binding.apply {
