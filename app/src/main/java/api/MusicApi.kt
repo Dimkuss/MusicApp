@@ -2,8 +2,8 @@ package api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import responseBio.AuthorBioResponse
-import responseTrack.TopTracksResponse
+import com.example.musicapp.responseBio.AuthorBioResponse
+import com.example.musicapp.responseTrack.TopTracksResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create

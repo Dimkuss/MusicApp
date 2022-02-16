@@ -12,37 +12,39 @@
         android:padding="24dp"
         tools:context=".SearchFragment">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/searchBioBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:background="@drawable/gradient_bio"
             android:text="@string/get3tracks"
-            app:layout_constraintEnd_toEndOf="@id/editTextTextPersonName"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintWidth_percent="0.5" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:hint="@string/hint_name"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@id/headerBio" />
+
+        <TextView
+            android:id="@+id/headerBio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="@string/hint_name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity=""
             android:text="@string/artist_bio"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+            android:textAppearance="@style/TextHeader"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -56,10 +58,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/retryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/gradient_bio"
             android:text="@string/retry_loading"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +75,12 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:constraint_referenced_ids="retryTitle,retryButton" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/successGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="img_author,name_author,biography_text" />
 
         <ProgressBar
             android:id="@+id/progress"
@@ -86,10 +95,13 @@
 
         <ImageView
             android:id="@+id/img_author"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="48dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1.8:1"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
             app:layout_constraintTop_toBottomOf="@id/searchBioBtn"
             tools:src="@tools:sample/avatars" />
 
@@ -97,48 +109,51 @@
             android:id="@+id/name_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:textColor="#040404"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:typeface="sans"
-            app:layout_constraintStart_toEndOf="@id/img_author"
-            app:layout_constraintTop_toTopOf="@id/img_author"
-            tools:text="EMINEM" />
-
-
-        <TextView
-            android:id="@+id/listeners_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/listeners"
-            android:textColor="#040404"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/name_author"
-            app:layout_constraintTop_toBottomOf="@id/name_author" />
-
-        <TextView
-            android:id="@+id/listenersTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="#040404"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/listeners_text"
-            app:layout_constraintTop_toBottomOf="@id/listeners_text"
-            tools:text="Author123" />
+            android:layout_marginTop="24dp"
+            android:textAppearance="@style/TextHeader"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@id/img_author"
+            tools:text="Людоед" />
 
         <TextView
             android:id="@+id/biography_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:textColor="#040404"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/listenersTextView"
-            app:layout_constraintTop_toBottomOf="@id/listenersTextView"
-            tools:text="@string/biography" />
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@id/name_author"
+            tools:text="«Людоед» - российская группа из Кирова, которая играет смесь хардкор-панка и блэк-метала. " />
+
+        <Button
+            android:id="@+id/go_back"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/go_back"
+            android:textAllCaps="false"
+            android:textColor="?colorOnBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@id/biography_text" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

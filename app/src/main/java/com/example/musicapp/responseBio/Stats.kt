@@ -1,4 +1,4 @@
-package responseBio
+package com.example.musicapp.responseBio
 
 import com.google.gson.annotations.SerializedName
 

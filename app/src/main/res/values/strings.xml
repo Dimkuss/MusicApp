@@ -9,7 +9,7 @@
     <string name="error_loading">Не получилось загрузить</string>
     <string name="welcomeText">Поиск музыкальных исполнителей</string>
     <string name="welcomeTextInfo">Сервис позволяет найти лучшие треки исполнителей и показывает биографию</string>
-
+    <string name="go_back">Вернуться назад</string>
 
 
 </resources>

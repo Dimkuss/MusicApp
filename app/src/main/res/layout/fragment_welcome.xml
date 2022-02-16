@@ -9,66 +9,92 @@
 
     <TextView
         android:id="@+id/textWelcome"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:fontFamily="serif-monospace"
+        android:layout_marginTop="48dp"
         android:text="@string/welcomeText"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textAppearance="@style/TextHeader"
+        app:layout_constraintBottom_toTopOf="@id/welcomeLine"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <View
+        android:id="@+id/welcomeLine"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/gradient_bio"
+        android:rotation="180"
+        app:layout_constraintBottom_toTopOf="@id/textWelcomeInfo"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@id/textWelcome" />
 
     <TextView
         android:id="@+id/textWelcomeInfo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="serif-monospace"
         android:text="@string/welcomeTextInfo"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textWelcome" />
+        app:layout_constraintBottom_toTopOf="@id/imageWelcome"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeLine" />
 
     <ImageView
         android:id="@+id/imageWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@id/buttonArtistBio"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textWelcomeInfo"
         app:srcCompat="@drawable/welcome_picture"
         tools:layout_editor_absoluteX="6dp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonArtistBio"
-        android:layout_width="163dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/gradient_bio"
         android:text="@string/artist_bio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageWelcome"
+        app:layout_constraintBottom_toTopOf="@id/buttonBestTracks"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/imageWelcome" />
 
-        />
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonBestTracks"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="48dp"
         android:background="@drawable/gradient_tracks"
         android:text="@string/artist_info"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/buttonArtistBio" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

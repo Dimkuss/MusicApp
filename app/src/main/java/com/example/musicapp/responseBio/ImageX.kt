@@ -1,8 +1,8 @@
-package responseBio
+package com.example.musicapp.responseBio
 
 import com.google.gson.annotations.SerializedName
 
-data class Image(
+data class ImageX(
     @SerializedName("#text")
     val text : String,
     @SerializedName("size")

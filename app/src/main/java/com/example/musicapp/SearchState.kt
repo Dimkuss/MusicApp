@@ -1,6 +1,6 @@
 package com.example.musicapp
 
-import responseTrack.Track
+import com.example.musicapp.responseTrack.Track
 
 sealed interface SearchState {
     object Loading : SearchState

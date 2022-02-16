@@ -1,7 +1,6 @@
 package com.example.musicapp
 
 
-import com.example.musicapp.TrackAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,14 +28,16 @@ class SearchFragment : Fragment() {
 
         val viewModel: SearchViewModel by viewModels()
 
-
-
         binding.retryButton.setOnClickListener {
             viewModel.searchTracks(binding.editTextTextPersonName.text.toString().trim())
         }
 
         binding.searchTracksBtn.setOnClickListener {
             viewModel.searchTracks(binding.editTextTextPersonName.text.toString().trim())
+        }
+
+        binding.goBack.setOnClickListener {
+            findNavController().navigateUp()
         }
 
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {

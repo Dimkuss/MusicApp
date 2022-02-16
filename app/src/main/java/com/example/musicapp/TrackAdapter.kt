@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.musicapp.databinding.SearchItemTrackBinding
-import responseTrack.Track
+import com.example.musicapp.responseTrack.Track
 
 
 class TrackAdapter(
@@ -42,7 +42,6 @@ class TrackViewHolder(
     fun bind(track: Track) {
         binding.apply {
             songName.text = track.name
-            songAuthor.text = track.artist.name
             imgAlbum.load(track.image.firstOrNull()?.text)
 
 

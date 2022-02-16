@@ -6,38 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".SearchFragment">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/searchTracksBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="24dp"
+        android:background="@drawable/gradient_bio"
         android:text="@string/get3tracks"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintWidth_percent="0.5" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="48dp"
+        android:drawableStart="@drawable/ic_baseline_search_24"
         android:ems="10"
         android:hint="@string/hint_name"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@id/headerSearch" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/headerSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:gravity=""
         android:text="@string/artist_info"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+        android:textAppearance="@style/TextHeader"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -81,12 +84,41 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingVertical="48dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchTracksBtn"
-        tools:listitem="@layout/search_item_track">
+        tools:listitem="@layout/search_item_track" />
 
-    </androidx.recyclerview.widget.RecyclerView>
+    <Button
+        android:id="@+id/go_back"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/go_back"
+        android:textAllCaps="false"
+        android:textColor="?colorOnBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startGuideline" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

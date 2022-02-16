@@ -1,4 +1,4 @@
-package responseTrack
+package com.example.musicapp.responseTrack
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,22 +1,20 @@
-package responseTrack
+package com.example.musicapp.responseBio
 
 import com.google.gson.annotations.SerializedName
 
-data class Track(
-    @SerializedName("artist")
-    val artist: Artist = Artist(),
-    @SerializedName("@attr")
-    val attr: AttrX = AttrX(),
+data class Artist(
+    @SerializedName("bio")
+    val bio: Bio = Bio(),
     @SerializedName("image")
     val image: List<Image> = listOf(),
-    @SerializedName("listeners")
-    val listeners: String = "",
     @SerializedName("mbid")
     val mbid: String = "",
     @SerializedName("name")
     val name: String = "",
-    @SerializedName("playcount")
-    val playcount: String = "",
+    @SerializedName("ontour")
+    val ontour: String = "",
+    @SerializedName("stats")
+    val stats: Stats = Stats(),
     @SerializedName("streamable")
     val streamable: String = "",
     @SerializedName("url")

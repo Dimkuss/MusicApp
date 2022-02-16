@@ -1,6 +1,6 @@
 package com.example.musicapp
 
-import responseBio.Artist
+import com.example.musicapp.responseBio.Artist
 
 sealed interface BioState {
     object Loading : BioState
