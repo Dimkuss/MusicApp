@@ -1,6 +1,5 @@
 package com.example.musicapp
 
-import BioViewModel
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -27,7 +26,7 @@ class BioFragment : Fragment() {
         val viewModel: BioViewModel by viewModels()
 
         binding.searchBioBtn.setOnClickListener {
-            viewModel.searchBio(binding.editTextTextPersonName.text.toString())
+            viewModel.searchBio(binding.editTextTextPersonName.text.toString().trim())
         }
 
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {

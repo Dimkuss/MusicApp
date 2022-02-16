@@ -29,16 +29,14 @@ class SearchFragment : Fragment() {
 
         val viewModel: SearchViewModel by viewModels()
 
-        binding.searchBioBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_searchFragment_to_bioFragment)
-        }
+
 
         binding.retryButton.setOnClickListener {
-            viewModel.searchTracks(binding.editTextTextPersonName.text.toString())
+            viewModel.searchTracks(binding.editTextTextPersonName.text.toString().trim())
         }
 
         binding.searchTracksBtn.setOnClickListener {
-            viewModel.searchTracks(binding.editTextTextPersonName.text.toString())
+            viewModel.searchTracks(binding.editTextTextPersonName.text.toString().trim())
         }
 
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {

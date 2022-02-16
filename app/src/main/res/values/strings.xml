@@ -2,12 +2,14 @@
     <string name="app_name">MusicApp</string>
     <string name="hint_name">Введите артиста</string>
     <string name="get3tracks">Поиск</string>
-    <string name="artist_info">Лучшие треки артиста</string>
-    <string name="artist_bio">Биография артиста</string>
+    <string name="artist_info">Лучшие треки</string>
+    <string name="artist_bio">Биография</string>
     <string name="listeners">Слушателей за месяц</string>
-    <string name="biography">Биография</string>
     <string name="retry_loading">Повторить</string>
     <string name="error_loading">Не получилось загрузить</string>
+    <string name="welcomeText">Поиск музыкальных исполнителей</string>
+    <string name="welcomeTextInfo">Сервис позволяет найти лучшие треки исполнителей и показывает биографию</string>
+
 
 
 </resources>

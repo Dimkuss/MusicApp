@@ -111,13 +111,12 @@
             android:id="@+id/listeners_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@string/listeners"
             android:textColor="#040404"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/name_author"
-            app:layout_constraintTop_toBottomOf="@id/name_author"
-            android:text="@string/listeners"
-            />
+            app:layout_constraintTop_toBottomOf="@id/name_author" />
 
         <TextView
             android:id="@+id/listenersTextView"
